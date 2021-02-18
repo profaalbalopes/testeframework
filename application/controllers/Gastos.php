@@ -5,12 +5,16 @@ class Gastos extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->view('template/cabecalho');
 		$this->load->view('listar_gastos');
+		$this->load->view('template/rodape');
 	}
 
 	public function novo()
 	{
+		$this->load->view('template/cabecalho');
 		$this->load->view('novo_gasto');
+		$this->load->view('template/rodape');
 	}
 
 	public function salvar()
@@ -18,7 +22,13 @@ class Gastos extends CI_Controller {
 		$data = $this->input->post('data');
 		$descricao = $this->input->post('descricao');
 		$valor = $this->input->post('valor');
-		echo "Os dados recebidos foram: $data, $descricao, $valor";
+
+		$dados['titulo'] = "Confirmação de recebimento";
+		$dados['mensagem'] = "Os dados foram recebidos com sucesso!";
+		
+		$this->load->view('template/cabecalho');
+		$this->load->view("confirmacao", $dados);
+		$this->load->view('template/rodape');
 	}
 
 }
